@@ -15,7 +15,10 @@ import connectDB from "./mongodb/connect.js";
 import userRouter from "./routes/user.routes.js";
 import postRouter from "./routes/post.routes.js";
 import authRouter from "./routes/auth.routes.js";
-import peopleRouter from "./routes/people.routes.js";
+import clientRoutes from "./routes/client.routes.js";
+import generalRoutes from "./routes/general.routes.js";
+import managementRoutes from "./routes/management.routes.js";
+import salesRoutes from "./routes/sales.routes.js";
 import { users, posts } from "./data/index.js";
 import User from "./mongodb/models/user.js";
 import Post from "./mongodb/models/post.js";
@@ -56,7 +59,10 @@ app.post("/posts", verifyToken, upload.single("picture"), createPost);
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/posts", postRouter);
-app.use("/people", peopleRouter);
+app.use("/client", clientRoutes);
+app.use("/general", generalRoutes);
+app.use("/management", managementRoutes);
+app.use("/sales", salesRoutes);
 
 const startServer = async () => {
   try {
