@@ -7,10 +7,15 @@ import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
+import { verifyToken } from "./middleware/auth.js";
+import { createPost } from "./controllers/post.controller.js";
+import { register } from "./controllers/auth.controller.js";
 
 import connectDB from "./mongodb/connect.js";
 import userRouter from "./routes/user.routes.js";
 import postRouter from "./routes/post.routes.js";
+import authRouter from "./routes/auth.routes.js";
+import peopleRouter from "./routes/people.routes.js";
 import { users, posts } from "./data/index.js";
 import User from "./mongodb/models/user.js";
 import Post from "./mongodb/models/post.js";
@@ -45,8 +50,13 @@ app.get("/", (req, res) => {
   res.send({ message: "Hello World!" });
 });
 
+app.post("/auth/register", upload.single("picture"), register);
+app.post("/posts", verifyToken, upload.single("picture"), createPost);
+
+app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/posts", postRouter);
+app.use("/people", peopleRouter);
 
 const startServer = async () => {
   try {

@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import User from "../models/User.js";
+import User from "../mongodb/models/user.js";
 
 /* REGISTER USER */
 export const register = async (req, res) => {
@@ -34,7 +34,7 @@ export const register = async (req, res) => {
     const savedUser = await newUser.save();
     res.status(201).json(savedUser);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(409).json({ message: err.message });
   }
 };
 
@@ -52,6 +52,6 @@ export const login = async (req, res) => {
     delete user.password;
     res.status(200).json({ token, user });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(404).json({ message: err.message });
   }
 };
