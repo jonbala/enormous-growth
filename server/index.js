@@ -19,9 +19,22 @@ import clientRoutes from "./routes/client.routes.js";
 import generalRoutes from "./routes/general.routes.js";
 import managementRoutes from "./routes/management.routes.js";
 import salesRoutes from "./routes/sales.routes.js";
-import { users, posts } from "./data/index.js";
+// import {
+//   users,
+//   dataUser,
+//   // dataProduct,
+//   dataProductStat,
+//   dataTransaction,
+//   dataOverallStat,
+//   dataAffiliateStat,
+// } from "./data/index.js";
 import User from "./mongodb/models/user.js";
-import Post from "./mongodb/models/post.js";
+import Product from "./mongodb/models/Product.js";
+import ProductStat from "./mongodb/models/ProductStat.js";
+import Transaction from "./mongodb/models/Transaction.js";
+import OverallStat from "./mongodb/models/OverallStat.js";
+import AffiliateStat from "./mongodb/models/AffiliateStat.js";
+import Users from "./mongodb/models/Users.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -74,7 +87,12 @@ const startServer = async () => {
 
     /* ADD DATA ONE TIME */
     // User.insertMany(users);
-    // Post.insertMany(posts);
+    // AffiliateStat.insertMany(dataAffiliateStat);
+    // OverallStat.insertMany(dataOverallStat);
+    // Product.insertMany(dataProduct);
+    // ProductStat.insertMany(dataProductStat);
+    // Transaction.insertMany(dataTransaction);
+    // Users.insertMany(dataUser);
   } catch (error) {
     console.log(error);
   }

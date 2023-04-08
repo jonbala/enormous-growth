@@ -12,7 +12,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import Header from "../../components/Header";
-import { useGetProductsQuery } from "../../state/api";
+import { useGetProductsQuery } from "../../state/api.js";
 
 const Product = ({
   _id,
@@ -104,7 +104,7 @@ const Products = () => {
             "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
           }}
         >
-          {data.map(
+          {data?.map(
             ({
               _id,
               name,
